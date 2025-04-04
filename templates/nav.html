@@ -4,6 +4,18 @@
             Home
         </a>
         <div id="navbarNav">
+            {% if request.user %}
+                <span class="nav-item">
+                        <a type="button" class="btn btn-outline-primary px-lg-4">Dashboard</a>
+                </span>
+            {% else %}
+                <span class="nav-item">
+                    <a href="{% url 'users:register' %}" type="button" class="btn btn-primary px-lg-5">Register</a>
+                </span>
+                <span class="nav-item">
+                        <a href="{% url 'users:login' %}" type="button" class="btn btn-outline-primary px-lg-4">Login</a>
+                </span>
+            {% endif %}
         </div>
     </div>
 </nav>

@@ -1,0 +1,22 @@
+.errorlist > li {
+    color: #cc0000;
+}
+
+.icard {
+    width: 90%;
+}
+
+@media (min-width: 768px) {
+    /* Tablet */
+    .icard {
+        width: 70%;
+    }
+}
+
+
+@media (min-width: 992px) {
+    /* Desktop */
+    .icard {
+        width: 40%;
+    }
+}
