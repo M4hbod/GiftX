@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="container pt-3">
+    <div class="d-flex flex-column align-items-center container pt-3">
         <h1>Categories</h1>
-        <div class="col-sm-6">
+        <div class="d-flex flex-row justify-content-center gap-3 flex-wrap">
             {% for category in gift_card_categories %}
-                <div class="card" style="width: 18rem;">
+                <div class="card" style="min-width: 18rem;">
                     <img class="card-img-top" src="{{ category.image.url }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">{{ category.title }}</h5>
