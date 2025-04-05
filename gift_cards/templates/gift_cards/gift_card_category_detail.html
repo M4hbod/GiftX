@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+    <div class="d-flex flex-column align-items-center container pt-3">
+        <div class="d-flex flex-row justify-content-center gap-3 flex-wrap">
+            {% for gift_card in gift_cards %}
+                <div class="card" style="min-width: 18rem;">
+                    <img class="card-img-top" src="{{ gift_card.image_url }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ gift_card.get_title }}</h5>
+                        <p class="card-text">
+                            {{ gift_card.description }}
+                        </p>
+                        <p class="card-text">
+                            <strong>Price:</strong> {{ gift_card.price|floatformat:0|intcomma }}
+                        </p>
+                        <a href="#" class="btn btn-primary">Add to cart</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -5,14 +5,17 @@
         <h1>Categories</h1>
         <div class="d-flex flex-row justify-content-center gap-3 flex-wrap">
             {% for category in gift_card_categories %}
-                <div class="card" style="min-width: 18rem;">
-                    <img class="card-img-top" src="{{ category.image.url }}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ category.title }}</h5>
-                        <p class="card-text">{{ category.description }}</p>
-                        <a href="#" class="btn btn-primary">View Details</a>
+                <a href="{% url 'gift_cards:gift_card_category_detail' category.id %}" class="text-decoration-none">
+                    <div class="card" style="min-width: 18rem;">
+                        <img class="card-img-top" src="{{ category.image_url }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ category.title }}</h5>
+                            <p class="card-text">
+                                {{ category.description }}
+                            </p>
+                        </div>
                     </div>
-                </div>
+                </a>
             {% endfor %}
         </div>
     </div>

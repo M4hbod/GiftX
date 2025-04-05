@@ -28,6 +28,12 @@ class GiftCardCategory(GiftCardGroup):
     def __str__(self):
         return self.title
 
+    @property
+    def image_url(self):
+        if self.image:
+            return self.image.url
+        return None
+
     class Meta:
         verbose_name = "Gift Card Category"
         verbose_name_plural = "Gift Card Categories"
@@ -43,12 +49,20 @@ class GiftCard(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.title
+
     @property
     def image_url(self):
         if self.image:
             return self.image.url
-        return self.category.image
+        return self.category.image_url
 
+    def get_title(self):
+        title = self.title + " - " + self.category.title
+        if self.country:
+            title += " (" + self.country.title + ")"
+        return title
 
 class GiftCardCode(models.Model):
     gift_card = models.ForeignKey(GiftCard, on_delete=models.CASCADE)
