@@ -22,27 +22,27 @@ class GiftCardCountry(GiftCardGroup):
         verbose_name_plural = "Gift Card Countries"
 
 
-class GiftCardCategory(GiftCardGroup):
-    image = models.ImageField(upload_to="products_category/")
+class BrandCategory(models.Model):
+    name = models.CharField(max_length=225, unique=True)
+    icon = models.ImageField(upload_to="brand_categories/", null=True, blank=True)
 
     def __str__(self):
-        return self.title
+        return self.name
 
-    @property
-    def image_url(self):
-        if self.image:
-            return self.image.url
-        return None
 
-    class Meta:
-        verbose_name = "Gift Card Category"
-        verbose_name_plural = "Gift Card Categories"
+class Brand(models.Model):
+    name = models.CharField(max_length=225, unique=True)
+    category = models.ForeignKey(BrandCategory, on_delete=models.CASCADE, related_name="brands")
+    image = models.ImageField(upload_to="brands/")
+
+    def __str__(self):
+        return self.name
 
 
 class GiftCard(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
-    category = models.ForeignKey(GiftCardCategory, on_delete=models.CASCADE)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     country = models.ForeignKey(GiftCardCountry, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="products/", null=True, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -56,7 +56,7 @@ class GiftCard(models.Model):
     def image_url(self):
         if self.image:
             return self.image.url
-        return self.category.image_url
+        return self.brand.image.url
 
     def get_title(self):
         title = self.title + " - " + self.category.title
@@ -74,32 +74,3 @@ class GiftCardCode(models.Model):
 
     def __str__(self):
         return self.code
-
-
-class BrandCategory(models.Model):
-    name = models.CharField(max_length=225, unique=True)
-    icon = models.ImageField(upload_to="brand_categories/", null=True, blank=True)
-
-    def __str__(self):
-        return self.name
-
-    @property
-    def icon_url(self):
-        if self.icon:
-            return self.icon.url
-        return None
-
-
-class Brand(models.Model):
-    name = models.CharField(max_length=225, unique=True)
-    category = models.ForeignKey(BrandCategory, on_delete=models.CASCADE, related_name="brands")
-    logo = models.ImageField(upload_to="brands/", null=True, blank=True)
-
-    def __str__(self):
-        return self.name
-
-    @property
-    def logo_url(self):
-        if self.logo:
-            return self.logo_url
-        return None

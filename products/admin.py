@@ -1,21 +1,13 @@
 from django.contrib import admin
 
-from products.models import GiftCard, GiftCardCategory, GiftCardCode, GiftCardCountry, Brand, BrandCategory
+from products.models import GiftCard, GiftCardCode, GiftCardCountry, Brand, BrandCategory
 
 
 @admin.register(GiftCard)
 class GiftCardAdmin(admin.ModelAdmin):
-    list_display = ("title", "category", "country", "price")
+    list_display = ("title", "brand", "country", "price")
     search_fields = ("title",)
-    list_filter = ("category", "country")
-    ordering = ("-created_at",)
-    list_per_page = 20
-
-
-@admin.register(GiftCardCategory)
-class GiftCardCategoryAdmin(admin.ModelAdmin):
-    list_display = ("title", "description")
-    search_fields = ("title",)
+    list_filter = ("brand", "country")
     ordering = ("-created_at",)
     list_per_page = 20
 
@@ -46,7 +38,7 @@ class BrandCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Brand)
 class BrandAdmin(admin.ModelAdmin):
-    list_display = ("name", "category", "logo")
+    list_display = ("name", "category", "image")
     search_fields = ("name",)
     list_filter = ("category",)
     ordering = ("name",)
