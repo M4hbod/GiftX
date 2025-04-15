@@ -23,7 +23,7 @@ class GiftCardCountry(GiftCardGroup):
 
 
 class GiftCardCategory(GiftCardGroup):
-    image = models.ImageField(upload_to="gift_cards_category/")
+    image = models.ImageField(upload_to="products_category/")
 
     def __str__(self):
         return self.title
@@ -44,7 +44,7 @@ class GiftCard(models.Model):
     description = models.TextField()
     category = models.ForeignKey(GiftCardCategory, on_delete=models.CASCADE)
     country = models.ForeignKey(GiftCardCountry, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to="gift_cards/", null=True, blank=True)
+    image = models.ImageField(upload_to="products/", null=True, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

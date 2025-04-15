@@ -10,7 +10,7 @@ ALLOWED_HOSTS = []
 
 LOCAL_APPS = [
     "core.apps.CoreConfig",
-    "gift_cards.apps.GiftCardsConfig",
+    "products.apps.ProductsConfig",
     "users.apps.UsersConfig",
 ]
 

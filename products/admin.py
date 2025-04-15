@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from gift_cards.models import GiftCard, GiftCardCategory, GiftCardCode, GiftCardCountry, Brand, BrandCategory
+from products.models import GiftCard, GiftCardCategory, GiftCardCode, GiftCardCountry, Brand, BrandCategory
 
 
 @admin.register(GiftCard)

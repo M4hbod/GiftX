@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 
-from gift_cards.models import GiftCardCategory
+from products.models import GiftCardCategory
 
 
 class HomeView(View):

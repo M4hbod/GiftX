@@ -82,14 +82,14 @@ class Migration(migrations.Migration):
                     "category",
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
-                        to="gift_cards.giftcardcategory",
+                        to="products.giftcardcategory",
                     ),
                 ),
                 (
                     "country",
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
-                        to="gift_cards.giftcardcountry",
+                        to="products.giftcardcountry",
                     ),
                 ),
             ],

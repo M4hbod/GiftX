@@ -52,7 +52,7 @@ make run
 ## Project Structure
 
 - `users/` - Custom user authentication app
-- `gift_cards/` - Gift card management app
+- `products/` - Product management app
 - `core/` - Core functionality and home page
 - `config/` - Project settings and configuration
 - `templates/` - Base templates and shared components
