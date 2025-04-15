@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% load humanize %} {% block content %}
+<div class="container pt-3 text-end">
+  <h2 class="mb-4">Markenkategorien</h2>
+
+  {% for category in categories %}
+  <div class="mb-5">
+    <h4 class="text-primary">
+      {% if category.icon_url %}
+      <img
+        src="{{ category.icon_url }}"
+        alt="{{ category.name }}"
+        height="30"
+        class="me-2"
+      />
+      {% endif %} {{ category.name }}
+    </h4>
+
+    <div class="d-flex flex-row justify-content-end gap-3 flex-wrap">
+      {% for brand in category.brands.all %}
+      <div class="card text-end" style="min-width: 14rem">
+        {% if brand.logo_url %}
+        <img
+          class="card-img-top"
+          src="{{ brand.logo_url }}"
+          alt="{{ brand.name }}"
+        />
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ brand.name }}</h5>
+        </div>
+      </div>
+      {% empty %}
+      <p class="text-muted">Keine Marken in dieser Kategorie.</p>
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from gift_cards.models import GiftCard, GiftCardCategory, GiftCardCode, GiftCardCountry
+from gift_cards.models import GiftCard, GiftCardCategory, GiftCardCode, GiftCardCountry, Brand, BrandCategory
 
 
 @admin.register(GiftCard)
@@ -33,4 +33,21 @@ class GiftCardCodeAdmin(admin.ModelAdmin):
     list_display = ("gift_card", "code", "created_at", "used_at")
     search_fields = ("code",)
     ordering = ("-created_at",)
+    list_per_page = 20
+
+
+@admin.register(BrandCategory)
+class BrandCategoryAdmin(admin.ModelAdmin):
+    list_display = ("name", "icon")
+    search_fields = ("name",)
+    ordering = ("name",)
+    list_per_page = 20
+
+
+@admin.register(Brand)
+class BrandAdmin(admin.ModelAdmin):
+    list_display = ("name", "category", "logo")
+    search_fields = ("name",)
+    list_filter = ("category",)
+    ordering = ("name",)
     list_per_page = 20

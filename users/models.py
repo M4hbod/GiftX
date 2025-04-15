@@ -4,14 +4,13 @@ from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.core.validators import RegexValidator
 from django.db import models
-
 from .managers import CustomUsermanager
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(unique=True)
-    phone_number = models.CharField(unique=True, max_length=11, validators=[RegexValidator(r"^09\d{9}$")])
+    phone_number = models.CharField(unique=True, max_length=11, blank=True, validators=[RegexValidator(r"^09\d{9}$")])
     created_at = models.DateTimeField(auto_now_add=True)
 
     USERNAME_FIELD = "email"

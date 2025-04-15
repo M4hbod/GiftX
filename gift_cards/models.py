@@ -64,6 +64,7 @@ class GiftCard(models.Model):
             title += " (" + self.country.title + ")"
         return title
 
+
 class GiftCardCode(models.Model):
     gift_card = models.ForeignKey(GiftCard, on_delete=models.CASCADE)
     code = models.CharField(max_length=255, unique=True)
@@ -73,3 +74,32 @@ class GiftCardCode(models.Model):
 
     def __str__(self):
         return self.code
+
+
+class BrandCategory(models.Model):
+    name = models.CharField(max_length=225, unique=True)
+    icon = models.ImageField(upload_to="brand_categories/", null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def icon_url(self):
+        if self.icon:
+            return self.icon.url
+        return None
+
+
+class Brand(models.Model):
+    name = models.CharField(max_length=225, unique=True)
+    category = models.ForeignKey(BrandCategory, on_delete=models.CASCADE, related_name="brands")
+    logo = models.ImageField(upload_to="brands/", null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def logo_url(self):
+        if self.logo:
+            return self.logo_url
+        return None
