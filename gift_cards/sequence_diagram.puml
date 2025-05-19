@@ -1,0 +1,22 @@
+@startuml
+actor User
+participant "AuthService" as A
+participant "Database" as DB
+
+User -> A: login(username, password)
+activate A
+
+A -> A: hash(password)
+A -> DB: SELECT * FROM users WHERE username = ?
+activate DB
+DB --> A: user record
+deactivate DB
+
+A -> A: verify hashed password
+alt password correct
+    A -> User: return JWT token
+else wrong password
+    A -> User: return error (401 Unauthorized)
+end
+deactivate A
+@enduml

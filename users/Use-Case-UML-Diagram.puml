@@ -1,0 +1,32 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam actorStyle awesome
+
+actor User
+actor Admin
+actor System
+
+rectangle "GiftX Platform" {
+
+  User --> (Register)
+  User --> (Login with OTP)
+  User --> (View Gift Cards)
+  User --> (Activate Gift Card)
+  User --> (Redeem Gift Card)
+  User --> (Receive Notifications)
+
+  Admin --> (Login)
+  Admin --> (Manage Gift Cards)
+  Admin --> (Generate Reports)
+
+  System --> (Expire Gift Cards Automatically)
+  System --> (Send Notifications)
+
+  Admin --> User : manages
+  Admin --> System : configures rules
+  (Activate Gift Card) --> (Send Notifications)
+  (Redeem Gift Card) --> (Send Notifications)
+  (Login with OTP) --> (Send Notifications)
+}
+@enduml

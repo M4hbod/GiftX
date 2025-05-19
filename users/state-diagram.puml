@@ -1,0 +1,13 @@
+@startuml
+[*] --> LoggedOut
+
+LoggedOut --> LoggingIn : enter credentials
+LoggingIn --> LoggedIn : credentials valid
+LoggingIn --> LoggedOut : invalid credentials
+
+LoggedIn --> Idle : no activity for 5 mins
+Idle --> LoggedIn : activity detected
+LoggedIn --> LoggedOut : logout
+Idle --> LoggedOut : session timeout
+
+@enduml

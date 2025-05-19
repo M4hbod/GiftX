@@ -1,0 +1,14 @@
+@startuml
+class User {
+  +id: int
+  +name: str
+  +login()
+}
+
+class Admin {
+  +permissions: list
+  +banUser()
+}
+
+User <|-- Admin
+@enduml

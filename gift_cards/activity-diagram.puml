@@ -1,0 +1,22 @@
+@startuml
+start
+
+:Enter username and password;
+:Send credentials to AuthService;
+
+if (User exists in DB?) then (yes)
+  :Hash and verify password;
+
+  if (Password correct?) then (yes)
+    :Generate JWT token;
+    :Return success response;
+  else (no)
+    :Return error: Invalid password;
+  endif
+
+else (no)
+  :Return error: User not found;
+endif
+
+stop
+@enduml

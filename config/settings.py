@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     *LOCAL_APPS,
+    "django_extensions",
 ]
 
 MIDDLEWARE = [
@@ -101,3 +102,8 @@ MEDIA_URL = "/media/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "users.CustomUser"
+
+GRAPH_MODELS = {
+    "all_applications": True,
+    "group_models": True,
+}
