@@ -16,10 +16,7 @@ GiftX is a Django-based web application for buying digital gift cards. The platf
 
 ## Prerequisites
 
-- Python 3.12+
-- Django 5.2+
-- Pillow for image handling
-- uv for package management
+- [uv](https://astral.sh/blog/uv) for package management
 
 ## Installation
 
@@ -29,7 +26,7 @@ git clone https://github.com/yourusername/GiftX.git
 cd GiftX
 ```
 
-2. Create a virtual environment:
+2. Create a virtual environment and install the dependencies:
 ```bash
 uv sync
 ```
